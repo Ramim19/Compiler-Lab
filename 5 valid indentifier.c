@@ -34,16 +34,16 @@ int main() {
     char id[100];
     FILE *inputFile, *outputFile;
 
-    // Step 1: Get input and save to input.txt
+    // Get input and save to input.txt
     printf("Enter an identifier:\n");
     fgets(id, sizeof(id), stdin);
-    id[strcspn(id, "\n")] = '\0';
+    id[strcspn(id, "\n")] = '\0'; // eleminate '\n'
 
     inputFile = fopen("input.txt", "w");
     fputs(id, inputFile);
     fclose(inputFile);
 
-    // Step 2: Read from input.txt and validate identifier
+    // Read from input.txt and validate identifier
     inputFile = fopen("input.txt", "r");
     outputFile = fopen("output.txt", "w");
     fgets(id, sizeof(id), inputFile);
