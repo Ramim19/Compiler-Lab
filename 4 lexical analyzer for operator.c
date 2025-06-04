@@ -19,16 +19,16 @@ int main() {
     char input[100], temp[3]; // temp holds up to 2-char operators
     FILE *inputFile, *outputFile;
 
-    // Step 1: Get input and save to input.txt
+    // Get input and save to input.txt
     printf("Enter a line with operators:\n");
     fgets(input, sizeof(input), stdin);
-    input[strcspn(input, "\n")] = '\0';
+    input[strcspn(input, "\n")] = '\0'; // eleminating '\n' 
 
     inputFile = fopen("input.txt", "w");
     fputs(input, inputFile);
     fclose(inputFile);
 
-    // Step 2: Read from input.txt and analyze operators
+    // Read from input.txt and analyze operators
     inputFile = fopen("input.txt", "r");
     outputFile = fopen("output.txt", "w");
     fgets(input, sizeof(input), inputFile);
@@ -41,11 +41,11 @@ int main() {
             temp[1] = input[i+1];
             temp[2] = '\0';
 
-            // Try 2-character operator first
+            // checking 2-character operator first
             if (isOperator(temp)) {
                 fprintf(outputFile, "Valid operator: %s\n", temp);
                 i += 2;
-            } else {
+            } else { // single charecter operator 
                 temp[1] = '\0';
                 if (isOperator(temp)) {
                     fprintf(outputFile, "Valid operator: %s\n", temp);
